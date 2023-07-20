@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ToDo App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #007BFF;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      padding: 8px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li span {
+      flex: 1;
+    }
+
+    .todo-form {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    .todo-form input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px 0 0 5px;
+    }
+
+    .todo-form input[type="submit"] {
+      padding: 8px 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, World! This is {{ hostname }}.</h1>
+  <h2>ToDo List:</h2>
+  <ul>
+    {% for item in todo_items %}
+    <li>
+      <span>{{ item }}</span>
+      <form action="{{ url_for('remove_todo', task=item) }}" method="post">
+        <input type="submit" value="Remove">
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <form class="todo-form" action="/" method="post">
+    <input type="text" name="task" placeholder="Add a new task">
+    <input type="submit" value="Add">
+  </form>
+</body>
+</html>
